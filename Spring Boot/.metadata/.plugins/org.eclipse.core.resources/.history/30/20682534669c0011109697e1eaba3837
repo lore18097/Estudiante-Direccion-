@@ -1,0 +1,13 @@
+package com.mx.Direccion.Entidad.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.mx.Direccion.Entidad.Direccion;
+
+public interface  DireccionDao extends JpaRepository<Direccion, Integer>{
+	 // Contar cuántos estudiantes usan una dirección
+    @Query("SELECT COUNT(e) FROM Estudiante e WHERE e.idDireccion = :idDireccion")
+    long countEstudiantesByDireccionId(@Param("idDireccion") Integer idDireccion);
+}

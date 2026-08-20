@@ -1,0 +1,12 @@
+package com.mx.estudiante.Dto;
+
+import lombok.Data;
+
+@Data
+public class EstudianteRequestDTO {
+	private Integer numeroControl;
+	private String nombre;
+	private String email;
+	private String telefono;
+	private Integer idDireccion;
+}

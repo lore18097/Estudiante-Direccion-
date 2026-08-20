@@ -1,0 +1,88 @@
+<div class="container">
+    <!-- Título con efecto glass -->
+    <div class="glass-header">
+        <div class="header-content">
+            <div class="icon-badge">
+                <span class="icon">🎓</span>
+            </div>
+            <div>
+                <h1>Estudiantes</h1>
+                <p class="subtitle">{{ mensaje }}</p>
+            </div>
+            <div class="counter">
+                <span>{{ estudiantes.length }}</span>
+                <small>total</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla moderna con glass -->
+    <div class="table-glass">
+        <div class="table-toolbar">
+            <div class="toolbar-left">
+                <span class="toolbar-icon">📋</span>
+                <span>Listado de estudiantes</span>
+            </div>
+            <button class="btn-refresh" (click)="cargarEstudiantes()">
+                <span class="refresh-icon">⟳</span> Actualizar
+            </button>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Control</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let est of estudiantes">
+                        <td>
+                            <span class="chip">{{ est.numeroControl }}</span>
+                        </td>
+                        <td>
+                            <div class="user-info">
+                                <div class="avatar">{{ est.nombre.charAt(0) }}</div>
+                                <span class="nombre">{{ est.nombre }}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="email-link">{{ est.email }}</span>
+                        </td>
+                        <td>
+                            <span class="phone">{{ est.telefono }}</span>
+                        </td>
+                        <td>
+                            <span class="address">
+                                {{ est.direccion?.calle }},
+                                {{ est.direccion?.colonia }},
+                                {{ est.direccion?.ciudad }}
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pie de tabla -->
+        <div class="table-footer">
+            <span>Mostrando {{ estudiantes.length }} estudiantes</span>
+            <div class="footer-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Empty state -->
+    <div *ngIf="estudiantes.length === 0" class="empty-state">
+        <div class="empty-icon">📭</div>
+        <h3>No hay estudiantes registrados</h3>
+        <p>Comienza agregando nuevos estudiantes al sistema</p>
+    </div>
+</div>

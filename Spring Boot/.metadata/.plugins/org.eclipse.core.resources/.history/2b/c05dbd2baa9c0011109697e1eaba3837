@@ -1,0 +1,5 @@
+package com.mx.estudiante.Excepciones;
+
+public class EstudianteDuplicadoException {
+
+}

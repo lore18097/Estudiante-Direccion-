@@ -1,0 +1,5 @@
+package com.mx.Direccion.Entidad.Repository;
+
+public class DireccionDao {
+
+}

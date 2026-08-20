@@ -1,0 +1,7 @@
+package com.mx.Direccion.Excepciones;
+
+public class DireccionEnUsoException extends RuntimeException {
+    public DireccionEnUsoException(String message) {
+        super(message);
+    }
+}

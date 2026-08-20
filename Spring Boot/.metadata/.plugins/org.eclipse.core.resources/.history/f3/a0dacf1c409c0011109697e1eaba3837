@@ -1,0 +1,5 @@
+package com.mx.estudiante.Entidad;
+
+public class Estudiante {
+
+}

@@ -1,0 +1,5 @@
+package com.mx.Direccion.Excepciones;
+
+public class DireccionDuplicadaException {
+
+}

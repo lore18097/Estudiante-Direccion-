@@ -1,0 +1,5 @@
+package com.mx.estudiante.Entidad.Repository;
+
+public class EsrudianteDao {
+
+}

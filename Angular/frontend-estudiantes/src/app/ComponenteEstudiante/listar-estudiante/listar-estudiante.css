@@ -1,0 +1,418 @@
+/* ==================== BASE ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* ==================== HEADER GLASS ==================== */
+.glass-header {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 30px 35px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.glass-header:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.icon-badge {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.icon {
+    font-size: 32px;
+}
+
+.glass-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.glass-header .subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+    margin: 4px 0 0 0;
+    font-weight: 400;
+}
+
+.counter {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 10px 24px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.counter span {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+}
+
+.counter small {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==================== TABLA GLASS ==================== */
+.table-glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.table-glass:hover {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+}
+
+/* ==================== TOOLBAR ==================== */
+.table-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 30px;
+    background: rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 14px;
+}
+
+.toolbar-icon {
+    font-size: 18px;
+}
+
+.btn-refresh {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-refresh:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-refresh:active {
+    transform: translateY(0);
+}
+
+.refresh-icon {
+    font-size: 18px;
+    display: inline-block;
+    transition: transform 0.5s ease;
+}
+
+.btn-refresh:hover .refresh-icon {
+    transform: rotate(180deg);
+}
+
+/* ==================== TABLA ==================== */
+.table-responsive {
+    overflow-x: auto;
+    padding: 0 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+}
+
+thead {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+thead th {
+    padding: 16px 20px;
+    text-align: left;
+    font-weight: 600;
+    color: #4a5568;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+tbody tr {
+    transition: all 0.25s ease;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+tbody tr:hover {
+    background: linear-gradient(135deg, #f7f9fc, #edf2f7);
+    transform: scale(1.002);
+}
+
+tbody td {
+    padding: 16px 20px;
+    color: #2d3748;
+}
+
+/* ==================== CHIPS Y BADGES ==================== */
+.chip {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 12px;
+    display: inline-block;
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.2);
+}
+
+/* ==================== USER INFO ==================== */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.nombre {
+    font-weight: 600;
+    color: #1a202c;
+}
+
+/* ==================== EMAIL ==================== */
+.email-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s;
+}
+
+.email-link:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+/* ==================== TELÉFONO ==================== */
+.phone {
+    color: #4a5568;
+    font-weight: 400;
+}
+
+/* ==================== DIRECCIÓN ==================== */
+.address {
+    background: rgba(102, 126, 234, 0.08);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #4a5568;
+    display: inline-block;
+}
+
+/* ==================== FOOTER ==================== */
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 30px;
+    background: rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    color: #718096;
+    font-size: 13px;
+}
+
+.footer-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #cbd5e0;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background: #667eea;
+    width: 20px;
+    border-radius: 4px;
+}
+
+.dot:hover {
+    background: #667eea;
+    cursor: pointer;
+}
+
+/* ==================== EMPTY STATE ==================== */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    border: 2px dashed rgba(102, 126, 234, 0.2);
+}
+
+.empty-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.empty-state h3 {
+    color: #2d3748;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: #718096;
+    font-size: 14px;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .glass-header {
+        padding: 20px;
+    }
+
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .glass-header h1 {
+        font-size: 22px;
+    }
+
+    .counter span {
+        font-size: 24px;
+    }
+
+    .table-toolbar {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+        padding: 16px 18px;
+    }
+
+    .btn-refresh {
+        justify-content: center;
+    }
+
+    tbody td {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    thead th {
+        padding: 12px 14px;
+        font-size: 10px;
+    }
+
+    .table-footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 14px 18px;
+    }
+
+    .avatar {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+}
+
+/* ==================== SCROLLBAR ==================== */
+.table-responsive::-webkit-scrollbar {
+    height: 6px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 10px;
+}

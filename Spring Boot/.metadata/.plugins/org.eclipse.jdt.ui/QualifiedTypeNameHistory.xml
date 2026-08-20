@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.jvnet.hk2.annotations.Service"/>
+    <fullyQualifiedTypeName name="com.mx.pruebaTecnica.Dao.EstudianteDao"/>
+    <fullyQualifiedTypeName name="com.mx.pruebaTecnica.Servicio.EstudianteServ"/>
+    <fullyQualifiedTypeName name="com.mx.pruebaTecnica.Entidad.Estudiante"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.netflix.eureka.server.EnableEurekaServer"/>
+    <fullyQualifiedTypeName name="com.mx.estudiantes.Dao.EstudianteDao"/>
+    <fullyQualifiedTypeName name="com.mx.estudiantes.Servicio.EstudianteServ"/>
+    <fullyQualifiedTypeName name="com.mx.estudiantes.entidad.Estudiante"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.client.discovery.EnableDiscoveryClient"/>
+    <fullyQualifiedTypeName name="com.mx.estudiante.Entidad.Repository.EstudianteDao"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
+    <fullyQualifiedTypeName name="com.mx.estudiante.Servicio.EstudianteServ"/>
+    <fullyQualifiedTypeName name="com.mx.estudiante.Entidad.Estudiante"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Column"/>
+    <fullyQualifiedTypeName name="com.mx.estudiante.Dto.EstudianteResponseDTO"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.condition.ConditionalOnNotWarDeployment"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.openfeign.FeignClient"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Table"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Entity"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
+    <fullyQualifiedTypeName name="com.mx.Direccion.Entidad.Direccion"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.mx.Direccion.Servicio.DireccionServ"/>
+    <fullyQualifiedTypeName name="com.mx.Direccion.Dto.DireccionResponseDTO"/>
+    <fullyQualifiedTypeName name="com.mx.Direccion.Entidad.Repository.DireccionDao"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.openfeign.EnableFeignClients"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="com.mx.estudiante.Dto.DireccionResponseDTO"/>
+    <fullyQualifiedTypeName name="com.mx.estudiante.Dto.DireccionDTO"/>
+    <fullyQualifiedTypeName name="com.mx.estudiante.OpenFeing.FeingDireccion"/>
+    <fullyQualifiedTypeName name="org.springframework.validation.annotation.Validated"/>
+</qualifiedTypeNameHistroy>

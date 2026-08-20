@@ -1,0 +1,25 @@
+# Nombre del microservicio
+spring.application.name=Estudiantes
+server.port=8000
+
+# Configuración Eureka
+eureka.instance.hostname=localhost
+eureka.client.service-url.defaultZone=http://localhost:8001/eureka
+
+# Configuración MySQL
+spring.datasource.url=jdbc:mysql://localhost:3306/estudiantesdb?useSSL=false&serverTimezone=America/Mexico_City
+spring.datasource.username=root
+spring.datasource.password=1234
+
+# Configuración JPA/Hibernate
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+spring.jpa.properties.hibernate.format_sql=true
+
+# Logs SQL
+logging.level.org.hibernate.SQL=debug
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=trace
+
+# Zona horaria
+spring.jackson.time-zone=America/Mexico_City

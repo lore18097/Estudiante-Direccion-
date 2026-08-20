@@ -1,0 +1,5 @@
+package com.mx.DireccionExcepciones;
+
+public class GlobalExceptionHandler {
+
+}

@@ -1,0 +1,21 @@
+package com.mx.estudiante.Servicio;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.mx.estudiante.Entidad.Estudiante;
+import com.mx.estudiante.Entidad.Repository.EstudianteDao;
+
+@Service
+public class EstudianteServ {
+	EstudianteDao dao;
+	
+	public ResponseEntity<List<Estudiante>> listar(){
+		if(dao.findAll().isEmpty()) {
+			return ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(dao.findAll());
+	}
+}

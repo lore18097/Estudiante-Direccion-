@@ -1,0 +1,54 @@
+spring.application.name=Direccion
+server.port=8002
+
+#Configuracion MySQL
+spring.datasource.url=jdbc:mysql://localhost:3306/estudiantesdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Mexico_City
+spring.datasource.username=root
+spring.datasource.password=1234
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+#Configuracion JPA/Hibernate
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+#Logs SQL
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+
+#Configuracion de la fecha y hora
+spring.jackson.time-zone=America/Mexico_City
+
+
+# CONFIGURACIÓN DE OPENAPI (springdoc)
+# Ruta donde estará disponible la documentación en formato JSON/YAML
+springdoc.api-docs.path=/api-docs
+
+# Ruta de la interfaz Swagger UI
+springdoc.swagger-ui.path=/swagger-ui.html
+
+# Ordenar operaciones por método (GET, POST, PUT, DELETE)
+springdoc.swagger-ui.operationsSorter=method
+
+# Ordenar tags alfabéticamente
+springdoc.swagger-ui.tagsSorter=alpha
+
+# Mostrar el actuator en la documentación
+springdoc.show-actuator=true
+
+# Paquetes a escanear para documentación
+springdoc.packages-to-scan=com.mx.estudiante.Controlador
+
+# Rutas a incluir en la documentación
+springdoc.paths-to-match=/Estudiante/**
+
+# Cachear la documentación para mejor rendimiento
+springdoc.cache.disabled=false
+
+# Título personalizado de la API
+springdoc.info.title=API de Estudiantes
+springdoc.info.description=API para gestionar la información de estudiantes
+springdoc.info.version=1.0.0
+springdoc.info.contact.name=Soporte Técnico
+springdoc.info.contact.email=soporte@direccion.com

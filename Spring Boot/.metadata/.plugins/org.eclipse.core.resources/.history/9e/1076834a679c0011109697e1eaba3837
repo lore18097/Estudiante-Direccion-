@@ -1,0 +1,11 @@
+package com.mx.estudiante.Entidad.Repository;
+
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.mx.estudiante.Entidad.Estudiante;
+
+public interface EstudianteDao extends JpaRepository<Estudiante, Integer> {
+
+}

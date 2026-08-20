@@ -1,0 +1,39 @@
+package com.mx.Direccion.Servicio;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.mx.Direccion.Dto.DireccionResponseDTO;
+import com.mx.Direccion.Entidad.Direccion;
+import com.mx.Direccion.Entidad.Repository.DireccionDao;
+
+@Service
+public class DireccionServ {
+	@Autowired
+	private DireccionDao dao;
+	
+	 // Listar todas las direcciones
+    public ResponseEntity<List<DireccionResponseDTO>> listar() {
+        List<DireccionResponseDTO> lista = dao.findAll().stream()
+            .map(this::mapToDTO)
+            .toList();
+            
+        if (lista.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(lista);
+    }
+	
+ // Mapper: Entidad → DTO Response
+    private DireccionResponseDTO mapToDTO(Direccion direccion) {
+        DireccionResponseDTO dto = new DireccionResponseDTO();
+        dto.setId(direccion.getId());
+        dto.setCalle(direccion.getCalle());
+        dto.setColonia(direccion.getColonia());
+        dto.setCiudad(direccion.getCiudad());
+        return dto;
+    }
+}

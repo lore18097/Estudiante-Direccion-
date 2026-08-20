@@ -1,0 +1,30 @@
+package com.mx.estudiante.Controlador;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mx.estudiante.Dto.EstudianteResponseDTO;
+import com.mx.estudiante.Servicio.EstudianteServ;
+
+import org.springframework.web.bind.annotation.GetMapping;
+
+
+
+@RequestMapping("Estudiante")
+@RestController
+@CrossOrigin
+public class WSEstudiante {
+	@Autowired
+	EstudianteServ service;
+	
+	@GetMapping("Listar")
+	 public ResponseEntity<List<EstudianteResponseDTO>> listar() {
+        return service.listar();
+    }
+	
+}

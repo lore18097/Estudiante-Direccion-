@@ -1,0 +1,47 @@
+package com.mx.estudiante.Servicio;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.mx.estudiante.Dto.EstudianteResponseDTO;
+import com.mx.estudiante.Entidad.Estudiante;
+import com.mx.estudiante.Entidad.Repository.EstudianteDao;
+
+@Service
+public class EstudianteServ {
+	@Autowired
+	EstudianteDao dao;
+	
+	public ResponseEntity<List<EstudianteResponseDTO>> listar() {
+        List<EstudianteResponseDTO> lista = dao.findAll().stream()
+            .map(this::mapToDTO).toList();
+        if (lista.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(lista);
+    }
+	
+	private EstudianteResponseDTO mapToDTO(Estudiante est) {
+        EstudianteResponseDTO dto = new EstudianteResponseDTO();
+        dto.setNumeroControl(est.getNumeroControl());
+        dto.setNombre(est.getNombre());
+        dto.setEmail(est.getEmail());
+        dto.setTelefono(est.getTelefono());
+        // Dirección se llenará con Feign más adelante
+        return dto;
+    }
+	
+	public ResponseEntity<List<EstudianteResponseDTO>> buscarPorDireccion(Integer idDireccion) {
+        System.out.println("Buscando estudiantes con idDireccion: " + idDireccion);
+        List<Estudiante> estudiantes = dao.findByIdDireccion(idDireccion);
+        System.out.println("Estudiantes encontrados en BD: " + estudiantes.size());
+        
+        List<EstudianteResponseDTO> lista = estudiantes.stream()
+            .map(this::mapToDTO)
+            .toList();
+        return ResponseEntity.ok(lista);
+    }
+}

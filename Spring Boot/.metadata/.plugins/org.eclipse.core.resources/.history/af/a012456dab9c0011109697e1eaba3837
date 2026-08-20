@@ -1,0 +1,73 @@
+package com.mx.estudiante.Servicio;
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.mx.estudiante.Dto.DireccionDTO;
+import com.mx.estudiante.Dto.EstudianteResponseDTO;
+import com.mx.estudiante.Entidad.Estudiante;
+import com.mx.estudiante.Entidad.Repository.EstudianteDao;
+import com.mx.estudiante.OpenFeing.FeingDireccion;
+
+
+@Service
+public class EstudianteServ {
+    
+    @Autowired
+    private EstudianteDao dao;
+    
+    @Autowired
+    private FeingDireccion feignDireccion;
+    
+    public ResponseEntity<List<EstudianteResponseDTO>> listar() {
+        List<EstudianteResponseDTO> lista = dao.findAll().stream()
+            .map(this::mapToDTO)
+            .toList();
+        if (lista.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(lista);
+    }
+    
+    public ResponseEntity<List<EstudianteResponseDTO>> buscarPorDireccion(Integer idDireccion) {
+        List<EstudianteResponseDTO> lista = dao.findByIdDireccion(idDireccion).stream()
+            .map(this::mapToDTO)
+            .toList();
+        return ResponseEntity.ok(lista);
+    }
+    
+    private EstudianteResponseDTO mapToDTO(Estudiante est) {
+        EstudianteResponseDTO dto = new EstudianteResponseDTO();
+        dto.setNumeroControl(est.getNumeroControl());
+        dto.setNombre(est.getNombre());
+        dto.setEmail(est.getEmail());
+        dto.setTelefono(est.getTelefono());
+        
+        // ✅ Obtener la dirección usando Feign con el endpoint directo
+        try {
+            if (est.getIdDireccion() != null) {
+                System.out.println("Consultando dirección para ID: " + est.getIdDireccion());
+                
+                DireccionDTO direccion = feignDireccion.buscarDireccion(est.getIdDireccion());
+                
+                if (direccion != null) {
+                    dto.setDireccion(direccion);
+                    System.out.println("Dirección obtenida: " + direccion);
+                } else {
+                    System.out.println("No se pudo obtener la dirección");
+                    dto.setDireccion(null);
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error al obtener dirección para ID " + est.getIdDireccion() + ": " + e.getMessage());
+            e.printStackTrace();
+            dto.setDireccion(null);
+        }
+        
+        return dto;
+    }
+}

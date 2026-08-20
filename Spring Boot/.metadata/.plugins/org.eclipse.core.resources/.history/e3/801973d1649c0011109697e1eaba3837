@@ -1,0 +1,133 @@
+package com.mx.Direccion.Servicio;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
+
+import com.mx.Direccion.Dto.DireccionRequestDTO;
+import com.mx.Direccion.Dto.DireccionResponseDTO;
+import com.mx.Direccion.Entidad.Direccion;
+import com.mx.Direccion.Entidad.Repository.DireccionDao;
+import com.mx.Direccion.Excepciones.DireccionDuplicadaException;
+import com.mx.Direccion.Excepciones.DireccionEnUsoException;
+import com.mx.Direccion.Excepciones.ResourceNotFoundException;
+
+
+
+@Service
+public class DireccionServ {
+    
+    private final DireccionDao dao;  // Tu Dao
+    
+    // Constructor con inyección de dependencias
+    public DireccionServ(DireccionDao dao) {
+        this.dao = dao;
+    }
+    
+    // ============ 1. LISTAR ============
+    public ResponseEntity<List<DireccionResponseDTO>> listar() {
+        List<DireccionResponseDTO> lista = dao.findAll().stream()
+            .map(this::convertirADto)
+            .toList();
+            
+        if (lista.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(lista);
+    }
+    
+    // ============ 2. BUSCAR POR ID ============
+    @Transactional(readOnly = true)
+    public ResponseEntity<DireccionResponseDTO> buscar(Integer id) {
+        Direccion direccion = dao.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Dirección no encontrada con ID: " + id));
+        
+        return ResponseEntity.ok(convertirADto(direccion));
+    }
+    
+    // ============ 3. GUARDAR ============
+    @Transactional
+    public ResponseEntity<DireccionResponseDTO> guardar(@Validated DireccionRequestDTO dto) {
+        // Validar duplicados
+        for (Direccion d : dao.findAll()) {
+            if (d.getCalle().equalsIgnoreCase(dto.getCalle()) &&
+                d.getColonia().equalsIgnoreCase(dto.getColonia()) &&
+                d.getCiudad().equalsIgnoreCase(dto.getCiudad())) {
+                throw new DireccionDuplicadaException(
+                    "Ya existe una dirección con calle: " + dto.getCalle() + 
+                    ", colonia: " + dto.getColonia() + 
+                    " y ciudad: " + dto.getCiudad()
+                );
+            }
+        }
+        
+        Direccion direccion = new Direccion(null, dto.getCalle(), dto.getColonia(), dto.getCiudad());
+        Direccion guardada = dao.save(direccion);
+        return ResponseEntity.ok(convertirADto(guardada));
+    }
+    
+    // ============ 4. ACTUALIZAR ============
+    @Transactional
+    public ResponseEntity<DireccionResponseDTO> editar(Integer id, @Validated DireccionRequestDTO dto) {
+        // Verificar que existe
+        Direccion existente = dao.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Dirección no encontrada con ID: " + id));
+        
+        // Validar duplicados excluyendo el registro actual
+        for (Direccion d : dao.findAll()) {
+            if (d.getCalle().equalsIgnoreCase(dto.getCalle()) &&
+                d.getColonia().equalsIgnoreCase(dto.getColonia()) &&
+                d.getCiudad().equalsIgnoreCase(dto.getCiudad()) &&
+                !d.getId().equals(id)) {
+                throw new DireccionDuplicadaException(
+                    "Ya existe otra dirección con calle: " + dto.getCalle() + 
+                    ", colonia: " + dto.getColonia() + 
+                    " y ciudad: " + dto.getCiudad()
+                );
+            }
+        }
+        
+        // Actualizar datos
+        existente.setCalle(dto.getCalle());
+        existente.setColonia(dto.getColonia());
+        existente.setCiudad(dto.getCiudad());
+        
+        Direccion actualizada = dao.save(existente);
+        return ResponseEntity.ok(convertirADto(actualizada));
+    }
+    
+    // ============ 5. ELIMINAR ============
+    @Transactional
+    public ResponseEntity<Void> eliminar(Integer id) {
+        // Verificar que existe
+        Direccion direccion = dao.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Dirección no encontrada con ID: " + id));
+        
+        // Verificar si está en uso por algún estudiante
+        long countEstudiantes = dao.countEstudiantesByDireccionId(id);
+        if (countEstudiantes > 0) {
+            throw new DireccionEnUsoException(
+                "No se puede eliminar la dirección porque está siendo usada por " + 
+                countEstudiantes + " estudiante(s)"
+            );
+        }
+        
+        dao.delete(direccion);
+        return ResponseEntity.ok().build();
+    }
+    
+    // ============ MAPPERS ============
+    
+    // Convertir Entidad → DTO Response
+    private DireccionResponseDTO convertirADto(Direccion direccion) {
+        DireccionResponseDTO dto = new DireccionResponseDTO();
+        dto.setId(direccion.getId());
+        dto.setCalle(direccion.getCalle());
+        dto.setColonia(direccion.getColonia());
+        dto.setCiudad(direccion.getCiudad());
+        return dto;
+    }
+}

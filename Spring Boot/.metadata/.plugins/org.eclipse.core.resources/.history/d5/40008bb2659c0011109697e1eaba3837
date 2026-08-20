@@ -1,0 +1,5 @@
+package com.mx.Direccion.OpenFeign;
+
+public interface FeignEstudiante {
+
+}
